@@ -698,8 +698,6 @@ jobs:
             
             # 硬件访问
             echo "CONFIG_DEVTMPFS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            #网络（Docker/NAT支持）
-            echo "CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y" >> ./common/arch/arm64/configs/gki_defconfig
             
       - name: 集成 Droidspaces 支持
         if: inputs.droidspaces != 'off'
