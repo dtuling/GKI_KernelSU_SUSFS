@@ -688,6 +688,9 @@ jobs:
             cd ../
             #开启NTsync内核配置
             echo "CONFIG_NTSYNC=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_PID_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_IPC_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
+
             
       - name: 集成 Droidspaces 支持
         if: inputs.droidspaces != 'off'
