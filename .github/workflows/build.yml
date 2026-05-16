@@ -682,22 +682,12 @@ jobs:
             cd "$KERNEL_ROOT"
             cd ./common
             wget "https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/NTsync/ntsync_base.patch"
-            wget "https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/NTsync/ntsync_compat_android13-5.15.patch"
+            wget "https://raw.githubusercontent.com/Goldzxcbug/Droidspaces_Kernel_patch/refs/heads/main/GKI/5.15/GKI-5.15-sysvipc_kabi_6_7_8.patch"
             patch -p1 < 'ntsync_base.patch'
-            patch -p1 < 'ntsync_compat_android13-5.15.patch'            
+            patch -p1 < 'GKI-5.15-sysvipc_kabi_6_7_8.patch'            
             cd ../
             #开启NTsync内核配置
             echo "CONFIG_NTSYNC=y" >> ./common/arch/arm64/configs/gki_defconfig
-            #IPC
-            echo "CONFIG_SYSVIPC=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_POSIX_MQUEUE=y"  >> ./common/arch/arm64/configs/gki_defconfig
-            
-            # 命名空间
-            echo "CONFIG_IPC_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            echo "CONFIG_PID_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
-            
-            # 硬件访问
-            echo "CONFIG_DEVTMPFS=y" >> ./common/arch/arm64/configs/gki_defconfig
             
       - name: 集成 Droidspaces 支持
         if: inputs.droidspaces != 'off'
