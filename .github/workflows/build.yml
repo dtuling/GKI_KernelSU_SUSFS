@@ -688,6 +688,29 @@ jobs:
             cd ../
             #开启NTsync内核配置
             echo "CONFIG_NTSYNC=y" >> ./common/arch/arm64/configs/gki_defconfig
+            #IPC
+            echo "CONFIG_SYSVIPC=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_POSIX_MQUEUE=y"  >> ./common/arch/arm64/configs/gki_defconfig
+            
+            # 命名空间
+            echo "CONFIG_IPC_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_PID_NS=y" >> ./common/arch/arm64/configs/gki_defconfig
+            
+            # 硬件访问
+            echo "CONFIG_DEVTMPFS=y" >> ./common/arch/arm64/configs/gki_defconfig
+            #网络（Docker/NAT支持）
+            echo "CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y" >> ./common/arch/arm64/configs/gki_defconfig
+            
+            #UFW 支持
+            echo "CONFIG_NETFILTER_XT_TARGET_REJECT=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_NETFILTER_XT_TARGET_LOG=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_NETFILTER_XT_MATCH_RECENT=y" >> ./common/arch/arm64/configs/gki_defconfig
+            
+            #Fail2ban 支持
+            echo "CONFIG_IP_SET=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_IP_SET_HASH_IP=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_IP_SET_HASH_NET=y" >> ./common/arch/arm64/configs/gki_defconfig
+            echo "CONFIG_NETFILTER_XT_SET=y" >> ./common/arch/arm64/configs/gki_defconfig
             
       - name: 集成 Droidspaces 支持
         if: inputs.droidspaces != 'off'
